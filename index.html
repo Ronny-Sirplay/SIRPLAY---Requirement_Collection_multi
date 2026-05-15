@@ -321,7 +321,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 const SHEET_ID        = '1-abaLQGeFjcJOxjE_AmEV-cTBc_4ZFZ-dinMvzDCBtk';
 // Después de publicar tu Apps Script (Implementar → App web → Cualquiera),
 // pega aquí la URL de implementación:
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxzg5Wp1NKtOL4ah0ZPh5JVMro2GfD2ChwEa3PTk1PhD3dnLusoVrSia4yj6tDPbd_HWw/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzwrX0BQ2t4DthCGoO0E94hj6VBLWuhy5lvQK4JNLZOLN4q9ghqlAqLL2z4aAsXmmQ5_g/exec';
 
 // ════════════════════════════════════════════════════
 //  FIELD DEFINITIONS
@@ -700,17 +700,9 @@ function submitForm() {
     fetch(APPS_SCRIPT_URL, {
       method:'POST',
       mode:'no-cors',
-      headers:{'Content-Type':'application/json'},
       body: JSON.stringify(payload)
     }).catch(()=>{}).finally(() => {
-      ['el-intro','el-prog-row','el-prog-track','el-client','el-divider','fields-container','el-submit']
-        .forEach(id => { const el = document.getElementById(id); if(el) el.style.display='none'; });
-      const name = clientName.trim();
-      document.getElementById('s-en').textContent = `Thank you, ${name}!`;
-      document.getElementById('s-es').textContent = `¡Gracias, ${name}!`;
-      document.getElementById('s-pt').textContent = `Obrigado, ${name}!`;
-      document.getElementById('success-card').classList.add('show');
-      window.scrollTo({ top:0, behavior:'smooth' });
+      showSuccess();
     });
   };
   reader.onerror = function() {
@@ -721,21 +713,31 @@ function submitForm() {
       priority: pLabel('High')
     };
     fetch(APPS_SCRIPT_URL, {
-      method:'POST', mode:'no-cors',
-      headers:{'Content-Type':'application/json'},
+      method:'POST',
+      mode:'no-cors',
       body: JSON.stringify(payload)
     }).catch(()=>{}).finally(() => {
-      ['el-intro','el-prog-row','el-prog-track','el-client','el-divider','fields-container','el-submit']
-        .forEach(id => { const el = document.getElementById(id); if(el) el.style.display='none'; });
-      const name = clientName.trim();
-      document.getElementById('s-en').textContent = `Thank you, ${name}!`;
-      document.getElementById('s-es').textContent = `¡Gracias, ${name}!`;
-      document.getElementById('s-pt').textContent = `Obrigado, ${name}!`;
-      document.getElementById('success-card').classList.add('show');
-      window.scrollTo({ top:0, behavior:'smooth' });
+      showSuccess();
     });
   };
   reader.readAsDataURL(logoFile);
+}
+
+// ════════════════════════════════════════════════════
+//  SHOW SUCCESS SCREEN
+// ════════════════════════════════════════════════════
+function showSuccess() {
+  ['el-intro','el-prog-row','el-prog-track','el-client',
+   'el-divider','fields-container','el-submit'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  const name = clientName.trim();
+  document.getElementById('s-en').textContent = `Thank you, ${name}!`;
+  document.getElementById('s-es').textContent = `¡Gracias, ${name}!`;
+  document.getElementById('s-pt').textContent = `Obrigado, ${name}!`;
+  document.getElementById('success-card').classList.add('show');
+  window.scrollTo({ top:0, behavior:'smooth' });
 }
 
 // keyboard accessibility
