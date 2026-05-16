@@ -699,7 +699,6 @@ function submitForm() {
 
   fetch(APPS_SCRIPT_URL, {
   method: 'POST',
-  mode: 'cors', // <--- Asegúrate de que diga 'cors' o elimina la línea de no-cors
   headers: {
     'Content-Type': 'text/plain;charset=utf-8'
   },
@@ -717,7 +716,6 @@ function submitForm() {
     };
   fetch(APPS_SCRIPT_URL, {
   method: 'POST',
-  mode: 'cors', // <--- Asegúrate de que diga 'cors' o elimina la línea de no-cors
   headers: {
     'Content-Type': 'text/plain;charset=utf-8'
   },
