@@ -321,7 +321,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 const SHEET_ID        = '1-abaLQGeFjcJOxjE_AmEV-cTBc_4ZFZ-dinMvzDCBtk';
 // Después de publicar tu Apps Script (Implementar → App web → Cualquiera),
 // pega aquí la URL de implementación:
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzTXjeoId7tT5Sk5agWhVNouPzuy2nMAStMdZv2mkT3L1Nc6FVo17At5d8MowQe1ETntQ/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyCOVcHUSjgDxlXFhN7z_Lp-Il_lSZ2FsmQzlbDp09UzaRx4wmfS-gxOoeHnGOTJBng/exec';
   
 // ════════════════════════════════════════════════════
 //  FIELD DEFINITIONS
@@ -697,8 +697,9 @@ function submitForm() {
       logoMimeType: logoFile.type || 'application/octet-stream'
     };
 
-    fetch(APPS_SCRIPT_URL, {
+  fetch(APPS_SCRIPT_URL, {
   method: 'POST',
+  mode: 'cors', // <--- Asegúrate de que diga 'cors' o elimina la línea de no-cors
   headers: {
     'Content-Type': 'text/plain;charset=utf-8'
   },
@@ -714,8 +715,9 @@ function submitForm() {
       value:    '⚠️ File could not be read: ' + logoFile.name,
       priority: pLabel('High')
     };
-    fetch(APPS_SCRIPT_URL, {
+  fetch(APPS_SCRIPT_URL, {
   method: 'POST',
+  mode: 'cors', // <--- Asegúrate de que diga 'cors' o elimina la línea de no-cors
   headers: {
     'Content-Type': 'text/plain;charset=utf-8'
   },
