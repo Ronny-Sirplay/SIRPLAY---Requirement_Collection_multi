@@ -318,11 +318,10 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 // ════════════════════════════════════════════════════
 //  ★ CONFIGURACIÓN — ya lista, no tocar nada más ★
 // ════════════════════════════════════════════════════
-const SHEET_ID        = '1-abaLQGeFjcJOxjE_AmEV-cTBc_4ZFZ-dinMvzDCBtk';
-// Después de publicar tu Apps Script (Implementar → App web → Cualquiera),
-// pega aquí la URL de implementación:
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzeROleWbV7_pY8-Z_VMiZtu2Gox2KCdWmak80V2umfNHQc_B9n7mlOhj9bPsIyOLtn/exec';
-  
+const SHEET_ID        = '1WYSKs6Az_Kak6WsBcB2PEIJmsgrm18ilL7F6oVH5BGw';
+// ↓ Pega aquí la URL tras publicar el nuevo Apps Script (cuenta Gmail):
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyiefmr-H2Lc3lxbj9Kg03fRRlDwfk6jkGcHaGfg6dAskW1uAg_heuAv1iQ-OlsHRWP/exec';
+
 // ════════════════════════════════════════════════════
 //  FIELD DEFINITIONS
 // ════════════════════════════════════════════════════
@@ -697,13 +696,11 @@ function submitForm() {
       logoMimeType: logoFile.type || 'application/octet-stream'
     };
 
-  fetch(APPS_SCRIPT_URL, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'text/plain;charset=utf-8'
-  },
-  body: JSON.stringify(payload)
-}).catch(()=>{}).finally(() => {
+    fetch(APPS_SCRIPT_URL, {
+      method:'POST',
+      mode:'no-cors',
+      body: JSON.stringify(payload)
+    }).catch(()=>{}).finally(() => {
       showSuccess();
     });
   };
@@ -714,13 +711,11 @@ function submitForm() {
       value:    '⚠️ File could not be read: ' + logoFile.name,
       priority: pLabel('High')
     };
-  fetch(APPS_SCRIPT_URL, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'text/plain;charset=utf-8'
-  },
-  body: JSON.stringify(payload)
-}).catch(()=>{}).finally(() => {
+    fetch(APPS_SCRIPT_URL, {
+      method:'POST',
+      mode:'no-cors',
+      body: JSON.stringify(payload)
+    }).catch(()=>{}).finally(() => {
       showSuccess();
     });
   };
